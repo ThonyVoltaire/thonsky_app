@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PHP / MySQL</title>
+        <meta charset="utf-8">
+      <link rel="stylesheet" href="Formemembres.html">
+    </head>
+    <body>
+    
+        <h1>Bases de donnees MySQL</h1>  
+        ?php
+            $servername = 'localhost';
+            $pdname = 'pdodb';
+            $username = 'root';
+            $password = 'root';
+        try{
+            $dbco = new PDO("mysql:host=$servername; dbname=$dbname", $user, $pass);
+            $dbco-setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $ql = "CREATE TABLE Visiteurs(
+                Id INT UNSIGNED AUTO_INCREMENT PRIMARY,
+                Nom VARCHAR(30) NOT NULL,
+                Prenom VARCHAR(30) NOT NULL,
+                Pays_ou_tu_vis VARCHAR(40) NOT NULL,
+                Ville_ou_Etat VARCHAR(40) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                Sujet VARCHAR(300) NOT NULL,
+                DateInscription TIMESTAMP,
+                UNIQUE(MAIL)
+            )";
+            $dbco-exec($sql);
+            echo 'Table bien creee!';
+        }                                              
+            
+        catch (PDOException $e){
+            echo""Error:". $e -getmessage();
+        }
+        ?
+    </body>
+</html>
